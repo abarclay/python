@@ -101,6 +101,10 @@ do
   	count=`cat messages |
 		grep "^$month $day $newtime:[0-9]* [^ ]* $pname[ :([].*" |
 		wc -l`
+	# when I actually ran this, I ended up with a space in front
+	# of each of the counts - because they were strings returned
+	# by wc... I think adding 0 will fix it
+	count=`expr $count + 0`
 	total=`expr $total + $count`
 	/bin/echo -n ,$count
   done </tmp/pnames >/tmp/counts
@@ -120,3 +124,6 @@ cat /tmp/out
 # clearly, proctor wanted this done in a single pass
 # I should have used associative arrays but again, didn't want to stop
 # to google. I know I would have had to declare the array, then use it
+
+# improving performance as above sounds more like a refactor
+# something I didn't have time to do in the short, 1 hour test

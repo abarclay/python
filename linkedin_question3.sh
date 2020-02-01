@@ -32,7 +32,8 @@
 # ---------- end sample output ------------
 
 # AWB NOTES: Went with bash here. Probably should have used python
-# but again, I felt like stopping to google something such as 
+# but again, I felt like stopping to google something such as associative
+# arrays - but I didn't do it
 
 # my first solution missed the header line. This was pointed out by the
 # proctor and I fixed it
@@ -52,7 +53,8 @@ do
   # first solution had syntax error in next line
   count=`cat messages |grep "^$month $day $newtime" |wc -l`
   echo "$month $day $newtime"
-done | sort |uniq -c | while read count rest
+  # removed the sort that I had before the uniq
+done | uniq -c | while read count rest
   do
     # proctor made a point of asking if "count was a function" because
     # I missed the leading $ in orginal solution
@@ -61,3 +63,14 @@ done | sort |uniq -c | while read count rest
   done >>/tmp/out
   
 cat /tmp/out
+
+# one thing that was brought up by the proctor was that this solution
+# would fail the "sorted time order" solution due to the sort because
+# it would sort it alphabetically instead of by actual date (Feb would
+# come before Jan and 20 would come before 3)
+# I said to the interviewer that I could probably use date to convert the
+# date to number of seconds since the epoch, then sort numerically on that
+# but again, I didn't want to take the time to read the man page on that.
+# But now that I look at it, since /var/log/messages is already in time order
+# all I had to do was remove the "sort" - the uniq will still work
+
