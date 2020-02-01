@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3
 
 def ispalindrome(mystring):
   l=len(mystring)
@@ -16,9 +16,9 @@ true=0
 false=1
 x=ispalindrome("foof")
 x=ispalindrome("fool")
-x=ispalindrome("lol")
-x=ispalindrome("12344321")
+#x=ispalindrome("lol")
+#x=ispalindrome("12344321")
 if (x==true):
-  print "true"
+  print("true")
 else:
-  print "false"
+  print("false")
